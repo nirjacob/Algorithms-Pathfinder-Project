@@ -1,0 +1,7 @@
+﻿  AdjacencyList.cpp
+  minHeapPriorityQ.cpp
+  Generating Code...
+Main.obj : error LNK2019: unresolved external symbol "public: bool __thiscall input::inputHandler::valid(void)" (?valid@inputHandler@input@@QAE_NXZ) referenced in function _main
+Main.obj : error LNK2019: unresolved external symbol "public: class adjMatrix::AdjacencyMatrix __thiscall input::inputHandler::buildAdjacencyMatrix(void)" (?buildAdjacencyMatrix@inputHandler@input@@QAE?AVAdjacencyMatrix@adjMatrix@@XZ) referenced in function _main
+Main.obj : error LNK2019: unresolved external symbol "public: class adjListGraph::adjacencyListGraph __thiscall input::inputHandler::buildAdjacencyList(void)" (?buildAdjacencyList@inputHandler@input@@QAE?AVadjacencyListGraph@adjListGraph@@XZ) referenced in function _main
+C:\Users\Nir\Desktop\Algorithms-Pathfinder-Project\Debug\Algorithms-Pathfinder-Project.exe : fatal error LNK1120: 3 unresolved externals
