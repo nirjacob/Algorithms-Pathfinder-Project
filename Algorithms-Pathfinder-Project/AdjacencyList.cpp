@@ -24,7 +24,7 @@ namespace adjListGraph {
     adjList adjacencyListGraph::getAdjList(int u) {
         return adjArray[u];
     }
-    void adjacencyListGraph::addEdge(int u, int v, int c) {
+    void adjacencyListGraph::addEdge(int u, int v, double c) {
         adjListNode* newNode = new adjListNode;
         newNode->destination = v;
         newNode->weight = c;

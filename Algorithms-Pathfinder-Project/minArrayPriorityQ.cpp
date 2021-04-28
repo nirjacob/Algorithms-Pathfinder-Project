@@ -2,7 +2,6 @@
 namespace minArrayQ {
     minArrQ::minArrQ() {
         this->minQueue = nullptr;
-        this->minItem = nullptr;
         this->minItem->currMinItem = nullptr;
         this->size = 0;
     }
@@ -43,6 +42,7 @@ namespace minArrayQ {
             size--;
             return min;
         }
+        return min;
     }
     minArrQ::~minArrQ() {
         delete[] this->minQueue;

@@ -12,9 +12,9 @@ namespace adjMatrix {
 		delete matrix;
 	}
 	void AdjacencyMatrix::MakeEmptyGraph(int size) {
-		matrix = new int* [size];
+		matrix = new double* [size];
 		for (int i = 0; i < size; i++) {
-			matrix[i] = new int[size];
+			matrix[i] = new double[size];
 			for (int j = 0; j < size; j++)
 			{
 				matrix[i][j] = 0;
@@ -38,10 +38,14 @@ namespace adjMatrix {
 		}
 		return adjU.getAdjList(0);
 	}
-	void AdjacencyMatrix::AddEdge(int u, int v, int c) {
+	void AdjacencyMatrix::AddEdge(int u, int v, double c) {
 		matrix[u][v] = c;
 	}
 	void AdjacencyMatrix::RemoveEdge(int u, int v) {
 		matrix[u][v] = 0;
 	}
+	//void checkValidRoute() {
+
+	//}
+
 }
