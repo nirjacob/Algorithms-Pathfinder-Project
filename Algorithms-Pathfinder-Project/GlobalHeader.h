@@ -6,8 +6,10 @@
 #include "minArrayPriorityQ.h"
 #include "minHeapPriorityQ.h"
 #include "inputHandler.h"
+#include "Algorithms.h"
 #include <iostream>
 #include <fstream>
+using namespace algo;
 using namespace std;
 using namespace input;
 using namespace adjMatrix;

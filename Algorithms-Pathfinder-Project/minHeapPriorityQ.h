@@ -3,7 +3,7 @@
 class element {
 public:
 	int data;
-	int key;
+	double key;
 };
 class minHeapPriorityQ {
 private:
@@ -15,9 +15,9 @@ private:
 public:
 	~minHeapPriorityQ();
 	bool isEmpty();
-	void DecreaseKey(int index, int newKey);
+	void DecreaseKey(int index, double newKey);
 	void FixHeap(int node);
-	void Build(int vSize, int* d);
+	void Build(int vSize, double* d);
 	void Swap(element* child, element* parent);
 	element DeleteMin();
 };

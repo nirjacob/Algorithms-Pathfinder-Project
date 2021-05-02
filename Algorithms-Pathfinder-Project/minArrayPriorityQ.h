@@ -2,7 +2,7 @@
 namespace minArrayQ {
 	struct item {
 		int value;
-		int key;
+		double key;
 		item* currMinItem;
 	};
 	class minArrQ {
@@ -13,9 +13,11 @@ namespace minArrayQ {
 	public:
 		minArrQ();
 		~minArrQ();
-
-		void insert(int _value, int _key);
+		void build(int vSize, double* d);
+		void insert(int _value, double _key);
 		item* getMin();
 		item deleteMin();
+		bool isEmpty();
+		void decreaseKey(int place, double newKey);
 	};
 }

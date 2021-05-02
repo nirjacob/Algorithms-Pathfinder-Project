@@ -25,5 +25,7 @@ namespace adjListGraph {
         adjList getAdjList(int u); //Return linked list of the neighbors of the vertex c.
         void addEdge(int u, int v, double c); //Add the edge (u,v) with the weight c.
         void removeEdge(int u, int v); //Remove the edge (u,v) from the graph.
+        int getSize() { return this->numOfNodes;};
+        double getWeight(int u, int v);
     };
 }

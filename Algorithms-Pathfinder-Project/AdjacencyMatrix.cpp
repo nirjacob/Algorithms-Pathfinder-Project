@@ -17,12 +17,12 @@ namespace adjMatrix {
 			matrix[i] = new double[size];
 			for (int j = 0; j < size; j++)
 			{
-				matrix[i][j] = 0;
+				matrix[i][j] = -1;
 			}
 		}
 	}
 	bool AdjacencyMatrix::IsAdjacent(int u, int v) {
-		if (matrix[u][v] != 0) {
+		if (matrix[u][v] != -1) {
 			return true;
 		}
 		return false;
@@ -43,6 +43,9 @@ namespace adjMatrix {
 	}
 	void AdjacencyMatrix::RemoveEdge(int u, int v) {
 		matrix[u][v] = 0;
+	}
+	void AdjacencyMatrix::setVertices(int n){
+		this->size = n;
 	}
 	//void checkValidRoute() {
 

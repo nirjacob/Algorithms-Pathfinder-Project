@@ -12,6 +12,15 @@ namespace adjListGraph {
             adjArray[i].tail = nullptr;        
         }
     }
+    double adjacencyListGraph::getWeight(int u, int v) {
+        adjListNode* curr = adjArray[u].head;
+        while (curr != nullptr) {
+            if (curr->destination == v)
+                return curr->weight;
+            curr = curr->next;
+        }
+    }
+
     bool adjacencyListGraph::isAdjacent(int u, int v) {
         adjListNode* curr = adjArray[u].head;
         while(curr != nullptr){

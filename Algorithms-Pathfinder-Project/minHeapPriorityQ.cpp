@@ -14,8 +14,8 @@ bool minHeapPriorityQ::isEmpty() {
 		return false;
 	}
 }
-void minHeapPriorityQ::DecreaseKey(int place, int newKey) {
-	minHeap[place].data = newKey;
+void minHeapPriorityQ::DecreaseKey(int place, double newKey) {
+	minHeap[place].key = newKey;
 	while (minHeap[Parent(place)].key > minHeap[place].key && place != 0)
 	{
 		Swap(&minHeap[place], &minHeap[Parent(place)]);
@@ -35,7 +35,7 @@ int minHeapPriorityQ::Right(int node)
 	return (2 * node + 2);
 }
 
-void minHeapPriorityQ::Build(int vSize, int* d){
+void minHeapPriorityQ::Build(int vSize, double* d){
 	heapSize = vSize;
 	minHeap = new element[heapSize];
 	for (int i = 0; i < heapSize; i++) {

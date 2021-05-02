@@ -35,14 +35,14 @@ void inputHandler::readLineFromInput(string tempInput, int action) {
 	if (action == 1) {
 		if (countWhiteSpaces(tempInput) > 1 || tempInput.find('-') != string::npos)
 			throw "invalid input";
-		this->source = stoi(tempInput, nullptr, 10);
+		this->source = stoi(tempInput, nullptr, 10) - 1;
 		if (source > numOfVertices)
 			throw "invalid input";
 	}
 	if(action == 2){
 		if (countWhiteSpaces(tempInput) > 1 || tempInput.find('-') != string::npos)
 			throw "invalid input";
-			this->dest = stoi(tempInput);
+			this->dest = stoi(tempInput) -1;
 			if (dest > numOfVertices) 
 				throw "invalid input";
 	}
@@ -85,31 +85,30 @@ int inputHandler::countWhiteSpaces(string str) {
 
 
 
-adjacencyListGraph inputHandler::buildAdjacencyList() {
-	adjacencyListGraph resultList;
-	resultList.makeEmptyGraph(this->numOfVertices);
+adjacencyListGraph* inputHandler::buildAdjacencyList() {
+	adjacencyListGraph* resultList = new adjacencyListGraph;
+	resultList->makeEmptyGraph(this->numOfVertices);
 	string tempInput = input;
-	int index = 0;
+	int index = 0, firstVertice, secondVertice;
+	double weight;
 	for (int i = 0; i < this->numOfEdges; i++) {
-		int firstVertice, secondVertice;
-		double weight;
 		buildEdgeFromInput(firstVertice, secondVertice, weight);
-		resultList.addEdge(firstVertice-1, secondVertice-1, weight);//we chose internal logic that is zero based
+		resultList->addEdge(firstVertice-1, secondVertice-1, weight);//we chose internal logic that is zero based
 	}
 	input = tempInput;
 	return resultList;
 }
 
-AdjacencyMatrix inputHandler::buildAdjacencyMatrix() {
-	AdjacencyMatrix resultMatrix;
-	resultMatrix.MakeEmptyGraph(this->numOfVertices);
-	int index = 0;
+AdjacencyMatrix* inputHandler::buildAdjacencyMatrix() {
+	AdjacencyMatrix* resultMatrix = new AdjacencyMatrix;
+	resultMatrix->setVertices(this->numOfVertices);
+	resultMatrix->MakeEmptyGraph(this->numOfVertices);
+	int index = 0, firstVertice, secondVertice;
+	double weight;
 	string tempInput = input;
 	for (int i = 0; i < this->numOfEdges; i++) {
-		int firstVertice, secondVertice;
-		double weight;
 		buildEdgeFromInput(firstVertice, secondVertice, weight);
-		resultMatrix.AddEdge(firstVertice-1, secondVertice-1, weight);//we chose internal logic that is zero based
+		resultMatrix->AddEdge(firstVertice-1, secondVertice-1, weight);//we chose internal logic that is zero based
 	}
 	input = tempInput;
 	return resultMatrix;

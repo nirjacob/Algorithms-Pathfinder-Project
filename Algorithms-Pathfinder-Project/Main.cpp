@@ -1,6 +1,11 @@
 #include "GlobalHeader.h"
 int main(int argc, char** argv)
 {
+
+	//~~~~~~~~~~ Test everything but bellman-ford (Matrix) ~~~~~~~~~~\\
+	//~~~~~~~~~~ Add input checks DAG+Route ~~~~~~~~~~\\
+	//~~~~~~~~~~ Add runtimes to file ~~~~~~~~~~\\
+
 	inputHandler graph;
 	char text[20];
 	//graph.read(argv[1]);
@@ -8,12 +13,22 @@ int main(int argc, char** argv)
 	graph.read(text);
 	//check valid input
 	//make graphs
-	AdjacencyMatrix adjMatrix = graph.buildAdjacencyMatrix();
-	adjacencyListGraph adjList = graph.buildAdjacencyList();
+	AdjacencyMatrix* adjMatrix = graph.buildAdjacencyMatrix();
+	adjacencyListGraph* adjList = graph.buildAdjacencyList();
+	//check negative MAAGAL
 	//check route
 	//adjMatrix.checkValidRoute();
-
-
+	int destination = graph.getDest();
+	int source = graph.getSource();
+	
+	// MATRIX
+	double bfMatrixRes = shortestPath::bellmanFord(*adjMatrix, source, destination);
+	double dijkstraArrMatrixRes = shortestPath::dijkstraMinArray(*adjMatrix, source, destination);
+	double dijkstraHeapMatrixRes = shortestPath::dijkstraMinHeap(*adjMatrix, source, destination);
+	// LISTS 
+	double bfListRes = shortestPath::bellmanFord(*adjList, source, destination);
+	double dijkstraArrListRes = shortestPath::dijkstraMinArray(*adjList, source, destination);
+	double dijkstraHeapListRes = shortestPath::dijkstraMinHeap(*adjList, source, destination);
 
 	//ofstream outFile(argv[2]);
 	//if (!outFile) {
