@@ -2,53 +2,49 @@
 namespace minArrayQ {
     minArrQ::minArrQ() {
         this->minQueue = nullptr;
-        this->minItem->currMinItem = nullptr;
         this->size = 0;
     }
     void minArrQ::insert(int _value, double _key) {
-        item* newItem = new item;
-        newItem->key = _key;
-        newItem->value = _value;
-        if (_key < minItem->key) {
-            this->minItem = newItem;
-        }
+        arrVertice* newItem = new arrVertice;
+        newItem->verticeDistance = _key;
+        newItem->verticeNumber = _value;
         newItem->currMinItem = this->minItem;
         this->size++;
-        minQueue[size].key = newItem->key;
-        minQueue[size].value = newItem->value;
+        minQueue[size].verticeDistance = newItem->verticeDistance;
+        minQueue[size].verticeNumber = newItem->verticeNumber;
         minQueue[size].currMinItem = newItem->currMinItem;
+        if (_key < minItem->verticeDistance) {
+            this->minItem = &minQueue[size];
+        }
     }
-    item* minArrQ::getMin() {
+    arrVertice* minArrQ::getMin() {
         return this->minItem;
     }
-    item minArrQ::deleteMin() {
-        item min = *(this->minItem);
-        double currMinPriority = INT_MAX;
-        int currMinIndex = -1;
-        for (int i = 0; i <= size; i++) {
-            if (currMinPriority == this->minQueue[i].key
-                && currMinIndex > -1
-                && this->minQueue[currMinIndex].value > this->minQueue[i].value) {
-                currMinPriority = this->minQueue[i].key;
-                currMinIndex = i;
+    arrVertice minArrQ::deleteMin() {
+        arrVertice min = *(this->minItem);
+        this->minItem->verticeDistance = -1;
+        this->minItem->verticeNumber = -1;
+        int currMinDistance =-1, minimumDistance =-1;
+        int index = -1;
+        for (int i = 0; i < size; i++) {
+            if (minQueue[i].verticeDistance != -1) {
+                currMinDistance = minQueue[i].verticeDistance;
+                if (currMinDistance < minimumDistance) {
+                    minimumDistance = currMinDistance;
+                    index = i;
+                }
             }
-            else if (currMinPriority < this->minQueue[i].key) {
-                currMinPriority = this->minQueue[i].key;
-                currMinIndex = i;
-            }
-            minItem->currMinItem = this->minQueue[currMinIndex].currMinItem;
-            minItem->key= this->minQueue[currMinIndex].key;
-            minItem->value= this->minQueue[currMinIndex].value;
-            size--;
-            return min;
         }
+        minItem->currMinItem = this->minQueue[index].currMinItem;
+        minItem->verticeDistance = this->minQueue[index].verticeDistance;
+        minItem->verticeNumber = this->minQueue[index].verticeNumber;
         return min;
     }
     void minArrQ::decreaseKey(int place, double newKey){
-        this->minQueue[place].key = newKey;
-        if(this->minItem->key > newKey){
-            this->minItem->key = minQueue[place].key;
-            this->minItem->value = minQueue[place].value;
+        this->minQueue[place].verticeDistance = newKey;
+        if(this->minItem->verticeDistance > newKey){
+            this->minItem->verticeDistance = minQueue[place].verticeDistance;
+            this->minItem->verticeNumber = minQueue[place].verticeNumber;
             this->minItem->currMinItem = minQueue[place].currMinItem;
         }
     }
@@ -58,12 +54,14 @@ namespace minArrayQ {
 
     void minArrQ::build(int vSize, double* d) {
         this->size = vSize;
-        this->minItem->key = 0;
-        this->minItem->value = d[0];
+        this->minQueue = new arrVertice[vSize];
+        this->minItem = new arrVertice();
+        this->minItem->verticeDistance = 0;
+        this->minItem->verticeNumber = d[0];
         this->minItem->currMinItem = minItem;
         for (int i = 0; i < this->size; i++) {
-            minQueue[i].key = d[i];
-            minQueue[i].value = d[i];
+            minQueue[i].verticeDistance = d[i];
+            minQueue[i].verticeNumber = d[i];
             minQueue[i].currMinItem = minItem;
         }
     }

@@ -100,11 +100,12 @@ adjacencyListGraph* inputHandler::buildAdjacencyList() {
 }
 
 AdjacencyMatrix* inputHandler::buildAdjacencyMatrix() {
-	AdjacencyMatrix* resultMatrix = new AdjacencyMatrix;
+	AdjacencyMatrix* resultMatrix = new AdjacencyMatrix(this->numOfVertices);
 	resultMatrix->setVertices(this->numOfVertices);
 	resultMatrix->MakeEmptyGraph(this->numOfVertices);
 	int index = 0, firstVertice, secondVertice;
 	double weight;
+
 	string tempInput = input;
 	for (int i = 0; i < this->numOfEdges; i++) {
 		buildEdgeFromInput(firstVertice, secondVertice, weight);

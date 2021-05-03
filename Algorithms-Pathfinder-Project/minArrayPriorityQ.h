@@ -1,22 +1,22 @@
 #pragma once
 namespace minArrayQ {
-	struct item {
-		int value;
-		double key;
-		item* currMinItem;
+	struct arrVertice {
+		int verticeNumber;
+		double verticeDistance;
+		arrVertice* currMinItem;
 	};
 	class minArrQ {
 	private:
-		item* minQueue;
+		arrVertice* minQueue;
 		int size;
-		item* minItem;
+		arrVertice* minItem;
 	public:
 		minArrQ();
 		~minArrQ();
 		void build(int vSize, double* d);
 		void insert(int _value, double _key);
-		item* getMin();
-		item deleteMin();
+		arrVertice* getMin();
+		arrVertice deleteMin();
 		bool isEmpty();
 		void decreaseKey(int place, double newKey);
 	};

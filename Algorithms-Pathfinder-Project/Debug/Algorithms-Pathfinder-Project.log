@@ -1,2 +1,14 @@
-﻿  Algorithms.cpp
+﻿  AdjacencyList.cpp
+  AdjacencyMatrix.cpp
+  Algorithms.cpp
+  Main.cpp
+  inputHandler.cpp
+  minArrayPriorityQ.cpp
+C:\Users\Nir\Desktop\Algorithms-Pathfinder-Project\Algorithms-Pathfinder-Project\minArrayPriorityQ.cpp(31,46): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\Nir\Desktop\Algorithms-Pathfinder-Project\Algorithms-Pathfinder-Project\minArrayPriorityQ.cpp(60,43): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\Nir\Desktop\Algorithms-Pathfinder-Project\Algorithms-Pathfinder-Project\minArrayPriorityQ.cpp(64,44): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+  minHeapPriorityQ.cpp
+  Generating Code...
+C:\Users\Nir\Desktop\Algorithms-Pathfinder-Project\Algorithms-Pathfinder-Project\inputHandler.cpp(73): warning C4715: 'input::inputHandler::checkSecondNumberIndex': not all control paths return a value
+C:\Users\Nir\Desktop\Algorithms-Pathfinder-Project\Algorithms-Pathfinder-Project\AdjacencyList.cpp(22): warning C4715: 'adjListGraph::adjacencyListGraph::getWeight': not all control paths return a value
   Algorithms-Pathfinder-Project.vcxproj -> C:\Users\Nir\Desktop\Algorithms-Pathfinder-Project\Debug\Algorithms-Pathfinder-Project.exe

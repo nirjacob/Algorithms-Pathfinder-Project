@@ -1,10 +1,7 @@
 #include "GlobalHeader.h"
 minHeapPriorityQ::~minHeapPriorityQ()
 {
-	while (this->heapSize > 1)
-	{
-		this->DeleteMin();
-	}
+	delete[] this->minHeap;
 }
 bool minHeapPriorityQ::isEmpty() {
 	if (heapSize == 0) {
@@ -15,10 +12,10 @@ bool minHeapPriorityQ::isEmpty() {
 	}
 }
 void minHeapPriorityQ::DecreaseKey(int place, double newKey) {
-	minHeap[place].key = newKey;
-	while (minHeap[Parent(place)].key > minHeap[place].key && place != 0)
+	minHeap[place].distance = newKey;
+	while (minHeap[Parent(place)].distance > minHeap[place].distance && place != 0)
 	{
-		Swap(&minHeap[place], &minHeap[Parent(place)]);
+		Swap(minHeap[place], minHeap[Parent(place)]);
 		place = Parent(place);
 	}
 }
@@ -37,15 +34,15 @@ int minHeapPriorityQ::Right(int node)
 
 void minHeapPriorityQ::Build(int vSize, double* d){
 	heapSize = vSize;
-	minHeap = new element[heapSize];
+	minHeap = new vertice[heapSize];
 	for (int i = 0; i < heapSize; i++) {
-		minHeap[i].key = d[i];
-		minHeap[i].data = i;
+		minHeap[i].distance = d[i];
+		minHeap[i].verticeNum = i;
 	}
 }
-void minHeapPriorityQ::Swap(element* child,element* parent)
+void minHeapPriorityQ::Swap(vertice& child,vertice& parent)
 {
-	element* temp = child;
+	vertice temp = child;
 	child = parent;
 	parent = temp;
 }
@@ -54,20 +51,20 @@ void minHeapPriorityQ::FixHeap(int vertice) { //Fixes the heap that has node as 
 	int left = Left(vertice);
 	int right = Right(vertice);
 	//Find maximum among nodes, left and right.
-	if ((left < heapSize) && (minHeap[left].key < minHeap[vertice].key))
+	if ((left < heapSize) && (minHeap[left].distance < minHeap[vertice].distance))
 		min = left;
 	else min = vertice;
-	if ((right < heapSize) && (minHeap[right].key < minHeap[min].key))
+	if ((right < heapSize) && (minHeap[right].distance < minHeap[min].distance))
 		min = right;
 	//Swap values if necessary ,and continue
 	//fixing the heap towards the leaves.
 	if (min != vertice) {
-		Swap(&minHeap[vertice], &minHeap[min]);
+		Swap(minHeap[vertice], minHeap[min]);
 		FixHeap(min);
 	}
 }
-element minHeapPriorityQ::DeleteMin() {
-	element min = minHeap[0];
+vertice minHeapPriorityQ::DeleteMin() {
+	vertice min = minHeap[0];
 	heapSize--;
 	minHeap[0] = minHeap[heapSize];
 	FixHeap(0);

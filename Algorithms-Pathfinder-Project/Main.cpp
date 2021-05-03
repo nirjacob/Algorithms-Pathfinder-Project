@@ -19,16 +19,20 @@ int main(int argc, char** argv)
 	//check route
 	//adjMatrix.checkValidRoute();
 	int destination = graph.getDest();
+
 	int source = graph.getSource();
 	
-	// MATRIX
-	double bfMatrixRes = shortestPath::bellmanFord(*adjMatrix, source, destination);
-	double dijkstraArrMatrixRes = shortestPath::dijkstraMinArray(*adjMatrix, source, destination);
-	double dijkstraHeapMatrixRes = shortestPath::dijkstraMinHeap(*adjMatrix, source, destination);
-	// LISTS 
-	double bfListRes = shortestPath::bellmanFord(*adjList, source, destination);
-	double dijkstraArrListRes = shortestPath::dijkstraMinArray(*adjList, source, destination);
-	double dijkstraHeapListRes = shortestPath::dijkstraMinHeap(*adjList, source, destination);
+	
+	double bfMatrixRes = shortestPath::bellmanFord(adjMatrix, source, destination);
+	double bfListRes = shortestPath::bellmanFord(adjList, source, destination);
+	double dijkstraHeapMatrixRes = shortestPath::dijkstraMinHeap(adjMatrix, source, destination);
+	double dijkstraHeapListRes = shortestPath::dijkstraMinHeap(adjList, source, destination);
+
+
+
+
+	double dijkstraArrMatrixRes = shortestPath::dijkstraMinArray(adjMatrix, source, destination);
+	double dijkstraArrListRes = shortestPath::dijkstraMinArray(adjList, source, destination);
 
 	//ofstream outFile(argv[2]);
 	//if (!outFile) {

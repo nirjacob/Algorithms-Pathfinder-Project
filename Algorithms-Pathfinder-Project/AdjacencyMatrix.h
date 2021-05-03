@@ -9,7 +9,7 @@ namespace adjMatrix {
 		int size;
 
 	public:
-		AdjacencyMatrix() { matrix = nullptr; size = 0; };
+		AdjacencyMatrix(int numOfVertices);
 		~AdjacencyMatrix();
 		void MakeEmptyGraph(int size);
 		bool IsAdjacent(int u, int v);

@@ -1,13 +1,13 @@
 #pragma once
 
-class element {
+class vertice {
 public:
-	int data;
-	double key;
+	int verticeNum;
+	double distance;
 };
 class minHeapPriorityQ {
 private:
-	element* minHeap;
+	vertice* minHeap;
 	int heapSize;
 	static int Left(int node);
 	static int Right(int node);
@@ -18,6 +18,6 @@ public:
 	void DecreaseKey(int index, double newKey);
 	void FixHeap(int node);
 	void Build(int vSize, double* d);
-	void Swap(element* child, element* parent);
-	element DeleteMin();
+	void Swap(vertice& child, vertice& parent);
+	vertice DeleteMin();
 };
