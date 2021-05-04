@@ -3,70 +3,73 @@ namespace minArrayQ {
     minArrQ::minArrQ() {
         this->minQueue = nullptr;
         this->size = 0;
+        this->minItem = nullptr;
     }
-    void minArrQ::insert(int _value, double _key) {
+    void minArrQ::insert(int verticeNumber, double verticeDistance) {
         arrVertice* newItem = new arrVertice;
-        newItem->verticeDistance = _key;
-        newItem->verticeNumber = _value;
-        newItem->currMinItem = this->minItem;
-        this->size++;
-        minQueue[size].verticeDistance = newItem->verticeDistance;
-        minQueue[size].verticeNumber = newItem->verticeNumber;
-        minQueue[size].currMinItem = newItem->currMinItem;
-        if (_key < minItem->verticeDistance) {
-            this->minItem = &minQueue[size];
-        }
+        newItem->verticeDistance = verticeDistance;
+        newItem->verticeNumber = verticeNumber;
+        minQueue[verticeNumber].verticeDistance = newItem->verticeDistance;
+        minQueue[verticeNumber].verticeNumber = newItem->verticeNumber;
     }
     arrVertice* minArrQ::getMin() {
         return this->minItem;
     }
+
     arrVertice minArrQ::deleteMin() {
         arrVertice min = *(this->minItem);
-        this->minItem->verticeDistance = -1;
-        this->minItem->verticeNumber = -1;
-        int currMinDistance =-1, minimumDistance =-1;
-        int index = -1;
+        int index = 0;
         for (int i = 0; i < size; i++) {
-            if (minQueue[i].verticeDistance != -1) {
+            if (&minQueue[i] == minItem) {
+                index = i;
+            }
+        }
+        Swap(minQueue[index], minQueue[size - 1]);
+        int currMinDistance = INT_MAX;
+        size--;
+        for (int i = 0; i < size; i++) {
+            if (minQueue[i].verticeDistance < currMinDistance) {
+                this->minItem = &minQueue[i];
                 currMinDistance = minQueue[i].verticeDistance;
-                if (currMinDistance < minimumDistance) {
-                    minimumDistance = currMinDistance;
-                    index = i;
+            }
+        }
+        if (currMinDistance == INT_MAX) {
+            minItem = &minQueue[0];
+        }
+        return min;
+    }
+    void minArrQ::decreaseKey(int place, double newKey, int vSize) {
+        for (int i = 0; i < size; i++) {
+            if (minQueue[i].verticeNumber == place) {
+                this->minQueue[i].verticeDistance = newKey;
+                if (minItem->verticeDistance > newKey) {
+                    minItem = &minQueue[i];
                 }
             }
         }
-        minItem->currMinItem = this->minQueue[index].currMinItem;
-        minItem->verticeDistance = this->minQueue[index].verticeDistance;
-        minItem->verticeNumber = this->minQueue[index].verticeNumber;
-        return min;
+
     }
-    void minArrQ::decreaseKey(int place, double newKey){
-        this->minQueue[place].verticeDistance = newKey;
-        if(this->minItem->verticeDistance > newKey){
-            this->minItem->verticeDistance = minQueue[place].verticeDistance;
-            this->minItem->verticeNumber = minQueue[place].verticeNumber;
-            this->minItem->currMinItem = minQueue[place].currMinItem;
-        }
-    }
+
     minArrQ::~minArrQ() {
         delete[] this->minQueue;
     }
 
-    void minArrQ::build(int vSize, double* d) {
+    void minArrQ::build(int vSize, double* d,int source) {
         this->size = vSize;
         this->minQueue = new arrVertice[vSize];
         this->minItem = new arrVertice();
-        this->minItem->verticeDistance = 0;
-        this->minItem->verticeNumber = d[0];
-        this->minItem->currMinItem = minItem;
         for (int i = 0; i < this->size; i++) {
-            minQueue[i].verticeDistance = d[i];
-            minQueue[i].verticeNumber = d[i];
-            minQueue[i].currMinItem = minItem;
+            insert(i, d[i]);
         }
+        minItem = &minQueue[source];
     }
     bool minArrQ::isEmpty() {
         return (size == 0);
     }
-
+    void minArrQ::Swap(arrVertice& child, arrVertice& parent)
+    {
+        arrVertice temp = child;
+        child = parent;
+        parent = temp;
+    }
 };

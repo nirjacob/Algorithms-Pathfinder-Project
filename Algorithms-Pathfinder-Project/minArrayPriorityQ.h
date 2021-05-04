@@ -3,7 +3,6 @@ namespace minArrayQ {
 	struct arrVertice {
 		int verticeNumber;
 		double verticeDistance;
-		arrVertice* currMinItem;
 	};
 	class minArrQ {
 	private:
@@ -13,11 +12,13 @@ namespace minArrayQ {
 	public:
 		minArrQ();
 		~minArrQ();
-		void build(int vSize, double* d);
-		void insert(int _value, double _key);
+		void build(int vSize, double* d, int source);
+		void insert(int verticeNumber, double verticeDistance);
 		arrVertice* getMin();
 		arrVertice deleteMin();
 		bool isEmpty();
-		void decreaseKey(int place, double newKey);
+		void decreaseKey(int place, double newKey,int vSize);
+		void Swap(arrVertice& child, arrVertice& parent);
+
 	};
 }

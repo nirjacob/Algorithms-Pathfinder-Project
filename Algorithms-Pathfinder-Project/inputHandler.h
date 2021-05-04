@@ -9,6 +9,8 @@ namespace input{
 		int source;
 		int numOfVertices;
 		int numOfEdges=0;
+		int biggestVerticeNumber;
+		int lowestVerticeNumber;
 	public:
 		void read(char* fileName);
 		void readLineFromInput(string tempInput, int action);
@@ -19,5 +21,8 @@ namespace input{
 		void buildEdgeFromInput(int& firstVertice, int& secondVertice, double& weight);
 		int getDest() { return this->dest; };
 		int getSource() { return this->source; };
+		void updateLowestAndBiggestVertices(int firstVertice, int secondVertice);
+		bool isWrongDest();
+		bool isWrongSrc();
 	};
 }

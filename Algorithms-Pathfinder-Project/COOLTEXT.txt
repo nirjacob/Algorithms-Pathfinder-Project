@@ -1,0 +1,5 @@
+Adjacency Dijkstra heap 0.000011
+Adjacency Dijkstra array 0.000012300
+Adjacency Bellman Ford 0.000005200
+Matrix Dijkstra heap 0.000007900
+Matrix Dijkstra array 0.000008400

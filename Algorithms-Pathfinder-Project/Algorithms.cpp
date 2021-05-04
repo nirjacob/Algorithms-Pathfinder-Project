@@ -31,16 +31,19 @@ namespace algo {
 		delete[] distanceArray;
 		return res;
 	}
-	double shortestPath::dijkstraMinArray(AdjacencyMatrix* G, int source, int dest){
+	double shortestPath::dijkstraMinArray(AdjacencyMatrix* G, int source, int dest) {
 		minArrQ Q;
 		double* distanceArray = init(G->getSize(), source);
-		Q.build(G->getSize(), distanceArray);
-		while(!Q.isEmpty()){
+		Q.build(G->getSize(), distanceArray, source);
+		while (!Q.isEmpty()) {
 			arrVertice u = Q.deleteMin();
-			for(int i = 0; i < G->getSize(); i++){
-				if(G->IsAdjacent(u.verticeNumber, i)) {
+			for (int i = 0; i < G->getSize(); i++) {
+				if (G->IsAdjacent(u.verticeNumber, i)) {
+					double checkIfRelax = distanceArray[i];
 					relax(u.verticeNumber, i, G->getWeight(u.verticeNumber, i), distanceArray);
-					Q.decreaseKey(i, distanceArray[i]);
+					if (distanceArray[i] != checkIfRelax) {
+						Q.decreaseKey(i, distanceArray[i], G->getSize());
+					}
 				}
 			}
 		}
@@ -48,6 +51,7 @@ namespace algo {
 		delete[] distanceArray;
 		return res;
 	}
+
 	double shortestPath::dijkstraMinHeap(AdjacencyMatrix* G, int source, int dest) {
 		minHeapPriorityQ Q;
 		double* distanceArray = init(G->getSize(), source);
@@ -56,8 +60,11 @@ namespace algo {
 			vertice u = Q.DeleteMin();
 			for(int i = 0; i < G->getSize(); i++){
 				if(G->IsAdjacent(u.verticeNum,i)){
+					double checkIfRelax = distanceArray[i];
 					relax(u.verticeNum, i, G->getWeight(u.verticeNum,i), distanceArray);
-					Q.DecreaseKey(i, distanceArray[i]);
+					if (distanceArray[i] != checkIfRelax) {
+						Q.DecreaseKey(i, distanceArray[i]);
+					}
 				}
 			}
  		}
@@ -88,13 +95,16 @@ namespace algo {
 	double shortestPath::dijkstraMinArray(adjacencyListGraph* G, int source, int dest) {
 		minArrQ Q;
 		double* distanceArray = init(G->getSize(), source);
-		Q.build(G->getSize(), distanceArray);
-		while(!Q.isEmpty()){
+		Q.build(G->getSize(), distanceArray, source);
+		while (!Q.isEmpty()) {
 			arrVertice u = Q.deleteMin();
-			for(int i = 0; i < G->getSize(); i++){
-				if(G->isAdjacent(u.verticeNumber, i)) {
+			for (int i = 0; i < G->getSize(); i++) {
+				if (G->isAdjacent(u.verticeNumber, i)) {
+					double checkIfRelax = distanceArray[i];
 					relax(u.verticeNumber, i, G->getWeight(u.verticeNumber, i), distanceArray);
-					Q.decreaseKey(i, distanceArray[i]);
+					if (distanceArray[i] != checkIfRelax) {
+						Q.decreaseKey(i, distanceArray[i], G->getSize());
+					}
 				}
 			}
 		}
@@ -102,6 +112,7 @@ namespace algo {
 		delete[] distanceArray;
 		return res;
 	}
+
 	double shortestPath::dijkstraMinHeap(adjacencyListGraph* G, int source, int dest) {
 		minHeapPriorityQ Q;
 		double* distanceArray = init(G->getSize(), source);
@@ -110,8 +121,11 @@ namespace algo {
 			vertice u = Q.DeleteMin();
 			for (int i = 0; i < G->getSize(); i++) {
 				if (G->isAdjacent(u.verticeNum,i)) {
+					double checkIfRelax = distanceArray[i];
 					relax(u.verticeNum, i, G->getWeight(u.verticeNum, i), distanceArray);
-					Q.DecreaseKey(i, distanceArray[i]);
+					if (distanceArray[i] != checkIfRelax) {
+						Q.DecreaseKey(i, distanceArray[i]);
+					}
 				}
 			}
 		}
@@ -119,4 +133,5 @@ namespace algo {
 		delete[] distanceArray;
 		return res;
 	}
+
 }
