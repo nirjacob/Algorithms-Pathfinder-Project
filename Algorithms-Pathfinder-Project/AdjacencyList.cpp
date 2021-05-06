@@ -41,7 +41,16 @@ namespace adjListGraph {
         this->adjArray[u].head = newNode;
     }
     void adjacencyListGraph::removeEdge(int u, int v) {
-        
+        adjListNode* curr = this->adjArray[u].head;
+        while (curr->next != nullptr) {
+            if (curr->next->destination == u) {
+                if (curr->next->next != nullptr) {
+                }
+                adjListNode* temp = curr->next->next;
+                curr->next = temp;
+            }
+            delete(curr->next);
+        }
     }
     adjacencyListGraph::~adjacencyListGraph(){
         adjListNode* curr = this->adjArray->head;

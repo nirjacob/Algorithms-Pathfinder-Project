@@ -12,17 +12,17 @@ namespace input{
 		int biggestVerticeNumber;
 		int lowestVerticeNumber;
 	public:
-		void read(char* fileName);
+		void read(char* fileName);//Reads input from text file and checks its validity 
 		void readLineFromInput(string tempInput, int action);
-		AdjacencyMatrix* buildAdjacencyMatrix();
-		adjacencyListGraph* buildAdjacencyList();
+		AdjacencyMatrix* buildAdjacencyMatrix();//Builds ajacency matrix from the given input
+		adjacencyListGraph* buildAdjacencyList();//Builds ajacency list from the given input
 		int checkSecondNumberIndex(string str);
 		int countWhiteSpaces(string str);
-		void buildEdgeFromInput(int& firstVertice, int& secondVertice, double& weight);
+		void buildEdgeFromInput(int& firstVertice, int& secondVertice, double& weight);//Build edge from two given vertices and weight in the format of (u v w)
 		int getDest() { return this->dest; };
 		int getSource() { return this->source; };
 		void updateLowestAndBiggestVertices(int firstVertice, int secondVertice);
-		bool isWrongDest();
-		bool isWrongSrc();
+		bool isWrongDest();//Checks that destination vertice is valid
+		bool isWrongSrc();//Checks that source vertice is valid
 	};
 }

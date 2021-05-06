@@ -2,7 +2,7 @@
 using namespace adjListGraph;
 using namespace adjMatrix;
 namespace algo {
-	class shortestPath {
+	class shortestPath {//Shortest path algorithms class, contains the logic for each algorithm and takes input of adj list and adj matrix.
 	public:
 		static double* init(int n, int src);
 		static void relax(int u, int v, double newWeight, double* d);
